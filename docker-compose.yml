@@ -14,4 +14,17 @@ services:
       KAFKA_ADVERTISED_HOST_NAME: kafka
       KAFKA_ADVERTISED_PORT: 9092
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_CREATE_TOPICS: "simpletopic:5:1"
+      KAFKA_CREATE_TOPICS: "test:5:1"
+
+
+# Our MQtt service:  
+  mqtt:
+    image: eclipse-mosquitto:latest
+    restart: always
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - /opt/conf/mqtt/config:/mosquitto/config
+      - /opt/conf/mqtt/data:/mosquitto/data
+      - /opt/conf/mqtt/log:/mosquitto/log
